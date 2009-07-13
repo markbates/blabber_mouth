@@ -1,6 +1,6 @@
-module Notifier
+module BlabberMouth
   module DeliveryHandlers # :nodoc:
-    # Delivers Mack::Notifier objects to an Array.
+    # Delivers BlabberMouth objects to an Array.
     module Test
       
       def self.deliver(notifier)
@@ -12,4 +12,4 @@ module Notifier
       
     end # Test
   end # DeliveryHandlers
-end # Notifier
+end # BlabberMouth

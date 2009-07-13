@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), "..", "..", "spec_helper")
 require 'xmpp4r-simple'
 
-describe Mack::Notifier::DeliveryHandlers::XmppTransport do
+describe BlabberMouth::DeliveryHandlers::XmppTransport do
   
   describe "deliver" do
     
@@ -11,10 +11,10 @@ describe Mack::Notifier::DeliveryHandlers::XmppTransport do
     #   we.from = "h_test@jabber80.com"
     #   we.subject = "XMPP Transport test"
     #   we.body(:plain, "my plain text body")
-    #   adap = Mack::Notifier::Adapters::Xmpp.new(we)
+    #   adap = BlabberMouth::Adapters::Xmpp.new(we)
     #   adap.convert
     #   begin
-    #     Mack::Notifier::DeliveryHandlers::XmppTransport.deliver(adap)
+    #     BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
     #   rescue Exception => ex
     #     puts ex
     #   end
@@ -30,25 +30,25 @@ describe Mack::Notifier::DeliveryHandlers::XmppTransport do
     
     it "should send the message" do
       configatron.temp do
-        configatron.mack.notifier.xmpp.wait_for_response = false
+        configatron.blabber_mouth.xmpp.wait_for_response = false
         client = Jabber::Simple.new('h_test2@jabber80.com/home', 'test1234')
       
-        adap = Mack::Notifier::Adapters::Xmpp.new(@we)
+        adap = BlabberMouth::Adapters::Xmpp.new(@we)
         adap.convert
         lambda {
-          Mack::Notifier::DeliveryHandlers::XmppTransport.deliver(adap)
+          BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
         }.should_not raise_error(Exception)
       end
     end
     
     it "should raise Authentication error" do
       configatron.temp do 
-        configatron.mack.notifier.xmpp.password = 'foo'
+        configatron.blabber_mouth.xmpp.password = 'foo'
         
-        adap = Mack::Notifier::Adapters::Xmpp.new(@we)
+        adap = BlabberMouth::Adapters::Xmpp.new(@we)
         adap.convert
         lambda {
-          Mack::Notifier::DeliveryHandlers::XmppTransport.deliver(adap)
+          BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
         }.should raise_error(Jabber::ClientAuthenticationFailure)
       end
     end
@@ -56,20 +56,20 @@ describe Mack::Notifier::DeliveryHandlers::XmppTransport do
     it "should raise generic xmpp error" do      
       @we.to = "h_test22@jabber80.com"
       
-      adap = Mack::Notifier::Adapters::Xmpp.new(@we)
+      adap = BlabberMouth::Adapters::Xmpp.new(@we)
       adap.convert
       lambda {
-        Mack::Notifier::DeliveryHandlers::XmppTransport.deliver(adap)
+        BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
       }.should raise_error(Mack::Errors::XmppError)
     end
     
     it "should raise offline error" do
       @we.to = "h_test22@jabber80.com"
       
-      adap = Mack::Notifier::Adapters::Xmpp.new(@we)
+      adap = BlabberMouth::Adapters::Xmpp.new(@we)
       adap.convert
       begin
-        Mack::Notifier::DeliveryHandlers::XmppTransport.deliver(adap)
+        BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
       rescue Mack::Errors::XmppError => ex
         ex.get_error(:offline).should_not be_empty
       end
@@ -77,12 +77,12 @@ describe Mack::Notifier::DeliveryHandlers::XmppTransport do
     
     # it "should send to multiple recipients" do
     #   configatron.temp do
-    #     configatron.mack.notifier.xmpp.wait_for_response = false
+    #     configatron.blabber_mouth.xmpp.wait_for_response = false
     #     @we.to = ["h_test2@jabber80.com", "h_test3@jabber80.com"]
-    #     adap = Mack::Notifier::Adapters::Xmpp.new(@we)
+    #     adap = BlabberMouth::Adapters::Xmpp.new(@we)
     #     adap.convert
     #     lambda {
-    #       Mack::Notifier::DeliveryHandlers::XmppTransport.deliver(adap)
+    #       BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
     #     }.should_not raise_error(Exception)
     #   end
     # end

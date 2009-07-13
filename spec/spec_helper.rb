@@ -22,3 +22,11 @@ Spec::Runner.configure do |config|
   end
   
 end
+
+class WelcomeEmail
+  include BlabberMouth
+end
+
+def fixture(name)
+  File.read(File.join(File.dirname(__FILE__), "fixtures", "#{name}.fixture"))
+end

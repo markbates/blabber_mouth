@@ -1,10 +1,10 @@
-module Notifier
+module BlabberMouth
   module DeliveryHandlers # :nodoc:
-    # Delivers Mack::Notifier objects using sendmail.
+    # Delivers BlabberMouth objects using sendmail.
     module Sendmail
       
       def self.deliver(mail)
-        sendmail_settings = configatron.mack.notifier.sendmail
+        sendmail_settings = configatron.blabber_mouth.sendmail
         sendmail_args = sendmail_settings.arguments
         sendmail_args += " -f \"#{mail.reply_to}\"" if mail.reply_to
         IO.popen("#{sendmail_settings.location} #{sendmail_args}","w+") do |sm|
@@ -19,4 +19,4 @@ module Notifier
     SendMail = Sendmail # :nodoc:
     
   end # DeliveryHandlers
-end # Notifier
+end # BlabberMouth

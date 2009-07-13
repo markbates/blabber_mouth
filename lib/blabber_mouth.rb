@@ -1,9 +1,11 @@
-require File.join(File.dirname(__FILE__), 'gems')
+require 'configatron'
+require 'genosaurus'
 require 'validatable'
 require 'tmail'
+require 'xmpp4r'
 require 'xmpp4r-simple'
 
-fl = File.join(File.dirname(__FILE__), "mack-notifier")
+fl = File.join(File.dirname(__FILE__), "blabber_mouth")
 
 require File.join(fl, "paths")
 require File.join(fl, "settings")

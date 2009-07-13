@@ -2,7 +2,7 @@ module Errors # :nodoc:
   
   class UnconvertedNotifier < StandardError
     def initialize # :nodoc:
-      super("You must convert the Mack::Notifier object first!")
+      super("You must convert the BlabberMouth object first!")
     end
   end # UnconvertedNotifier
   

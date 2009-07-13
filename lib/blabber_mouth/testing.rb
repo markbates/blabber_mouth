@@ -1,9 +1,9 @@
 if Mack.env == "test"
   
-  # Used for testing this method will return any emails that have been 'sent' using Mack::Notifier::DeliveryHandlers::Test.
+  # Used for testing this method will return any emails that have been 'sent' using BlabberMouth::DeliveryHandlers::Test.
   # These emails will get 'flushed' after each test.
   def delivered_notifiers
-    Mack::Notifier::DeliveryHandlers::Test::NotifierRegistry.registered_items
+    BlabberMouth::DeliveryHandlers::Test::NotifierRegistry.registered_items
   end
   
   module Spec # :nodoc:
@@ -16,7 +16,7 @@ if Mack.env == "test"
 
         def execute(options, instance_variables)
           @__res = email_spec_execute(options, instance_variables)
-          Mack::Notifier::DeliveryHandlers::Test::NotifierRegistry.reset!
+          BlabberMouth::DeliveryHandlers::Test::NotifierRegistry.reset!
           @__res
         end
 
@@ -36,7 +36,7 @@ if Mack.env == "test"
         # run a cleanup method if it exists
         def run(result, &progress_block) # :nodoc:
           @__res = super_run(result)
-          Mack::Notifier::DeliveryHandlers::Test::NotifierRegistry.reset!
+          BlabberMouth::DeliveryHandlers::Test::NotifierRegistry.reset!
           @__res
         end
 

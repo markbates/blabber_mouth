@@ -1,4 +1,4 @@
-module Notifier
+module BlabberMouth
   module Adapters # :nodoc:
     
     class XmppMsgContainer 
@@ -16,7 +16,7 @@ module Notifier
     end
     
     # All mail adapters need to extend this class.
-    class Xmpp < Mack::Notifier::Adapters::Base
+    class Xmpp < BlabberMouth::Adapters::Base
       include Jabber
       
       # The transformed (ie, converted, object)
@@ -25,9 +25,9 @@ module Notifier
         return @xmpp_container
       end
       
-      # Convert the Mack::Notifier object to the adapted object.
+      # Convert the BlabberMouth object to the adapted object.
       def convert
-        settings = configatron.mack.notifier.xmpp_settings
+        settings = configatron.blabber_mouth.xmpp_settings
         arr = [mack_notifier.to].flatten
         @xmpp_container = XmppMsgContainer.new
         @xmpp_container.recipients = arr
@@ -56,4 +56,4 @@ module Notifier
       
     end # Base
   end # Adapters
-end # Notifier
+end # BlabberMouth

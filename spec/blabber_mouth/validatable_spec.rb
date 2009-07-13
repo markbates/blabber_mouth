@@ -1,17 +1,17 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
 
-describe Mack::Notifier::Validatable do
+describe BlabberMouth::Validatable do
   
   class QuestionEmail
-    include Mack::Notifier
-    include Mack::Notifier::Validatable
+    include BlabberMouth
+    include BlabberMouth::Validatable
     
     validates_presence_of :subject
   end
   
   class AnswerEmail
-    include Mack::Notifier
-    include Mack::Notifier::Validatable
+    include BlabberMouth
+    include BlabberMouth::Validatable
     
     common_notifier_validations
   end
@@ -70,8 +70,8 @@ describe Mack::Notifier::Validatable do
   describe "validates_email_format_of" do
     
     class HelpEmail
-      include Mack::Notifier
-      include Mack::Notifier::Validatable
+      include BlabberMouth
+      include BlabberMouth::Validatable
       
       validates_email_format_of :to
       

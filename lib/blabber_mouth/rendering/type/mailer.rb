@@ -7,7 +7,7 @@ module Rendering # :nodoc:
         render_file(x_file)
       end
       
-    end # Notifier
+    end # BlabberMouth
   end # Type
 end # Rendering
 

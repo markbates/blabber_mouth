@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), "..", "spec_helper")
 
-describe Mack::Notifier do
+describe BlabberMouth do
   
   before(:each) do
     @we = WelcomeEmail.new
@@ -69,7 +69,7 @@ describe Mack::Notifier do
     end
     
     it "should return multipart/mixed if there's an attachment" do
-      @we.attach(Mack::Notifier::Attachment.new(@my_file))
+      @we.attach(BlabberMouth::Attachment.new(@my_file))
       @we.content_type.should == "multipart/mixed"
     end
     
@@ -128,7 +128,7 @@ describe Mack::Notifier do
   
   describe "attach" do
     
-    it "should raise an error if the parameter isn't a Mack::Notifier::Attachment" do
+    it "should raise an error if the parameter isn't a BlabberMouth::Attachment" do
       lambda{@we.attach(1)}.should raise_error(ArgumentError)
     end
     
@@ -138,7 +138,7 @@ describe Mack::Notifier do
     
     it "should return true if there are attachments" do
       @we.should_not be_has_attachments
-      @we.attach(Mack::Notifier::Attachment.new(@my_file))
+      @we.attach(BlabberMouth::Attachment.new(@my_file))
       @we.should be_has_attachments
     end
     
@@ -151,7 +151,7 @@ describe Mack::Notifier do
   describe "attachments" do
     
     it "should return any attachments" do
-      at = Mack::Notifier::Attachment.new(@my_file)
+      at = BlabberMouth::Attachment.new(@my_file)
       @we.attach(at)
       @we.attachments.size.should == 1
       @we.attachments.should include(at)

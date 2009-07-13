@@ -1,5 +1,5 @@
-module Notifier
-  # Creates an attachment for a Mack::Notifier object.
+module BlabberMouth
+  # Creates an attachment for a BlabberMouth object.
   class Attachment
     
     # Returns a String representing the body of the attachment. This String is NOT encoded in anyway!
@@ -33,4 +33,4 @@ module Notifier
     end
     
   end # Attachment
-end # Notifier
+end # BlabberMouth

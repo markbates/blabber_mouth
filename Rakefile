@@ -25,7 +25,7 @@ require 'spec/rake/spectask'
   s.rubyforge_project = "blabber_mouth"
   s.add_dependency("tmail", ">=1.2.3.1")
   s.add_dependency("validatable", ">=1.6.7")
-  s.add_dependency("xmpp4r", ">=0.4")
+  s.add_dependency("xmpp4r", "0.4")
   s.add_dependency('xmpp4r-simple', '>=0.8.8')
   # s.test_files = FileList['spec/**/*']
   #s.bindir = "bin"

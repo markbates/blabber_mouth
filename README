@@ -1,9 +1,9 @@
 This gem provides a simple API for creating emails within a Mack application.
 
-A simple Mack::Notifier model would look like this:
+A simple BlabberMouth model would look like this:
 
   class WelcomeEmail
-    include Mack::Notifier
+    include BlabberMouth
   end
   
 To use this in your application you would do something like the following:
@@ -14,8 +14,8 @@ To use this in your application you would do something like the following:
   mail.subject = "Hello"
   mail.body(:plain, "This is my plain text body")
   mail.body(:html, "This is my <b>HTML</b> body")
-  mail.attach(Mack::Notifier::Attachment.new("/path/to/my/image_file.png"))
-  mail.attach(Mack::Notifier::Attachment.new("/path/to/my/pdf_file.pdf"))
+  mail.attach(BlabberMouth::Attachment.new("/path/to/my/image_file.png"))
+  mail.attach(BlabberMouth::Attachment.new("/path/to/my/pdf_file.pdf"))
   mail.deliver
   
 This gem currently has an adapter for TMail, but it can support any mailing

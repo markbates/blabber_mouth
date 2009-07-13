@@ -1,5 +1,5 @@
 # The heart and soul of the mack-notifier package.
-module Notifier
+module BlabberMouth
   
   attr_accessor :to
   attr_accessor :cc
@@ -80,10 +80,10 @@ module Notifier
     (@reply_to || self.from)
   end
   
-  # Adds a Mack::Notifier::Attachment to the notifier.
-  # Raise ArgumentError if the parameter is not a Mack::Notifier::Attachment
+  # Adds a BlabberMouth::Attachment to the notifier.
+  # Raise ArgumentError if the parameter is not a BlabberMouth::Attachment
   def attach(file)
-    raise ArgumentError.new unless file.is_a?(Mack::Notifier::Attachment)
+    raise ArgumentError.new unless file.is_a?(BlabberMouth::Attachment)
     attachments << file
   end
   
@@ -97,7 +97,7 @@ module Notifier
     @attachments ||= []
   end
   
-  # Delivers the notification with the configured Mack::Notifier::DeliveryHandlers class.
+  # Delivers the notification with the configured BlabberMouth::DeliveryHandlers class.
   # Returns false if there are any errors.
   def deliver(handler = deliver_with)
     begin
@@ -108,9 +108,9 @@ module Notifier
     return true
   end
   
-  # Delivers the email with the configured Mack::Notifier::DeliveryHandlers class.
+  # Delivers the email with the configured BlabberMouth::DeliveryHandlers class.
   def deliver!(handler = deliver_with)
-    "Mack::Notifier::DeliveryHandlers::#{handler.to_s.camelcase}".constantize.deliver(self)
+    "BlabberMouth::DeliveryHandlers::#{handler.to_s.camelcase}".constantize.deliver(self)
   end
   
   # Returns all the recipients of this notifier.
@@ -120,29 +120,29 @@ module Notifier
   
   # Returns a ready to be delivered, encoded, version of the notification.
   def deliverable(adap = adapter)
-    adap = "Mack::Notifier::Adapters::#{adap.to_s.camelcase}".constantize.new(self)
+    adap = "BlabberMouth::Adapters::#{adap.to_s.camelcase}".constantize.new(self)
     adap.convert
     adap.deliverable
   end
   
-  # This method returns the adapter that will transform the Mack::Notifier object
+  # This method returns the adapter that will transform the BlabberMouth object
   # and prepare it for delivery. This method returns the configatron.notifier.adapter
-  # parameter. Override this in your Mack::Notifier class to specify a different adapter
+  # parameter. Override this in your BlabberMouth class to specify a different adapter
   # or change the configatron parameter to globally affect all your Notifiers.
   # 
   # Default: :tmail
   def adapter
-    configatron.mack.notifier.adapter
+    configatron.blabber_mouth.adapter
   end
   
-  # This method returns the delivery handler that will delivers the Mack::Notifier object.
-  # This method returns the configatron.mack.notifier.deliver_with parameter. Override this in 
-  # your Mack::Notifier class to specify a different handler or change the configatron 
+  # This method returns the delivery handler that will delivers the BlabberMouth object.
+  # This method returns the configatron.blabber_mouth.deliver_with parameter. Override this in 
+  # your BlabberMouth class to specify a different handler or change the configatron 
   # parameter to globally affect all your Notifiers.
   # 
   # Default: :sendmail
   def deliver_with
-    configatron.mack.notifier.deliver_with
+    configatron.blabber_mouth.deliver_with
   end
   
   private
@@ -159,4 +159,4 @@ module Notifier
     return nil
   end
   
-end # Notifier
+end # BlabberMouth

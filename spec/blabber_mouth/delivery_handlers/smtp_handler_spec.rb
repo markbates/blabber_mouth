@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), "..", "..", "spec_helper")
 
-describe Mack::Notifier::DeliveryHandlers::Smtp do
+describe BlabberMouth::DeliveryHandlers::Smtp do
   
   describe "deliver" do
     
@@ -11,7 +11,7 @@ describe Mack::Notifier::DeliveryHandlers::Smtp do
       we.subject = "smtp handler test"
       we.body(:plain, "my plain text body")
       we.body(:html, "my <b>html</b> body")
-      Mack::Notifier::DeliveryHandlers::Smtp.deliver(we)
+      BlabberMouth::DeliveryHandlers::Smtp.deliver(we)
     end
     
   end

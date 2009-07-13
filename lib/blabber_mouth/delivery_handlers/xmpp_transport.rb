@@ -1,6 +1,6 @@
-module Notifier
+module BlabberMouth
   module DeliveryHandlers # :nodoc:
-    # Delivers Mack::Notifier objects using XMPP (Jabber)
+    # Delivers BlabberMouth objects using XMPP (Jabber)
     module XmppTransport
       
       def self.check_availability(client, recipients)
@@ -34,7 +34,7 @@ module Notifier
       
       def self.deliver(xmpp_msg)
         @ex ||= Mack::Errors::XmppError.new("xmpp error")
-        xmpp_settings = configatron.mack.notifier.xmpp
+        xmpp_settings = configatron.blabber_mouth.xmpp
         jid_str = xmpp_settings.jid
         jid_str += ("/" + xmpp_settings.jid_resource) if !jid_str.index("/")
         password = xmpp_settings.password
@@ -73,4 +73,4 @@ module Notifier
       end
     end # XmppTransport
   end # DeliveryHandlers
-end # Notifier
+end # BlabberMouth

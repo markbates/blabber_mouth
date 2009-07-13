@@ -1,10 +1,10 @@
 require File.join(File.dirname(__FILE__), "base")
 require 'base64'
 
-module Notifier
+module BlabberMouth
   module Adapters # :nodoc:
-    # Converts a Mack::Notifier object into a TMail object.
-    class Tmail < Mack::Notifier::Adapters::Base
+    # Converts a BlabberMouth object into a TMail object.
+    class Tmail < BlabberMouth::Adapters::Base
       
       # Returns the underlying TMail object.
       # Raises Mack::Errors::UnconvertedNotifier if the convert method hasn't
@@ -19,7 +19,7 @@ module Notifier
         transformed.encoded
       end
       
-      # Converts the Mack::Notifier object to a TMail object.
+      # Converts the BlabberMouth object to a TMail object.
       def convert
         @tmail = TMail::Mail.new 
         @tmail.to =           mack_notifier.to
@@ -74,4 +74,4 @@ module Notifier
       
     end # Tmail
   end # Adapters
-end # Notifier
+end # BlabberMouth

@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), "..", "..", "spec_helper")
 
-describe Mack::Notifier::Adapters::Tmail do
+describe BlabberMouth::Adapters::Tmail do
   
   describe "convert" do
     
@@ -12,7 +12,7 @@ describe Mack::Notifier::Adapters::Tmail do
       we.reply_to = "mark@mackframework.com"
       we.subject = "Hello World!"
       we.body(:plain, "This is my plain text body")
-      adap = Mack::Notifier::Adapters::Tmail.new(we)
+      adap = BlabberMouth::Adapters::Tmail.new(we)
       adap.convert
       tmail = adap.transformed
       tmail.to.should == [we.to]
@@ -25,7 +25,7 @@ describe Mack::Notifier::Adapters::Tmail do
       delivered_notifiers.size.should == 1
     end
   
-    it "should convert a Mack::Notifier object to a TMail::Mail object" do
+    it "should convert a BlabberMouth object to a TMail::Mail object" do
       delivered_notifiers.should be_empty
       we = WelcomeEmail.new
       we.to = "test@mackframework.com"
@@ -34,7 +34,7 @@ describe Mack::Notifier::Adapters::Tmail do
       we.subject = "Hello World!"
       we.body(:plain, "This is my plain text body")
       we.body(:html, "This is my <b>html</b> body")
-      adap = Mack::Notifier::Adapters::Tmail.new(we)
+      adap = BlabberMouth::Adapters::Tmail.new(we)
       adap.convert
       tmail = adap.transformed
       tmail.to.should == [we.to]
@@ -56,8 +56,8 @@ describe Mack::Notifier::Adapters::Tmail do
       we.subject = "Hello World!"
       we.body(:plain, "This is my plain text body")
       we.body(:html, "This is my <b>html</b> body")
-      we.attach(Mack::Notifier::Attachment.new(File.join(File.dirname(__FILE__), "..", "..", "fixtures", "mark-simpson.png")))
-      adap = Mack::Notifier::Adapters::Tmail.new(we)
+      we.attach(BlabberMouth::Attachment.new(File.join(File.dirname(__FILE__), "..", "..", "fixtures", "mark-simpson.png")))
+      adap = BlabberMouth::Adapters::Tmail.new(we)
       adap.convert
       tmail = adap.transformed
       tmail.content_type.should == "multipart/mixed"
@@ -81,7 +81,7 @@ describe Mack::Notifier::Adapters::Tmail do
       we.to = ["1@1.com", "2@2.com"]
       we.cc = "3@3.com"
       we.bcc = ["4@4.com", "5@5.com"]
-      adap = Mack::Notifier::Adapters::Tmail.new(we)
+      adap = BlabberMouth::Adapters::Tmail.new(we)
       adap.convert
       tmail = adap.transformed
       tmail.to.should == we.to
@@ -93,15 +93,15 @@ describe Mack::Notifier::Adapters::Tmail do
   
   describe "transformed" do
     
-    it "should return the transformed Mack::Notifier object as a TMail::Mail object" do
+    it "should return the transformed BlabberMouth object as a TMail::Mail object" do
       we = WelcomeEmail.new
-      adap = Mack::Notifier::Adapters::Tmail.new(we)
+      adap = BlabberMouth::Adapters::Tmail.new(we)
       adap.convert
       adap.transformed.should be_is_a(TMail::Mail)
     end
     
     it "should raise an error if convert hasn't been performed before calling transformed" do
-      adap = Mack::Notifier::Adapters::Tmail.new(WelcomeEmail.new)
+      adap = BlabberMouth::Adapters::Tmail.new(WelcomeEmail.new)
       lambda{adap.transformed}.should raise_error(Mack::Errors::UnconvertedNotifier)
     end
     

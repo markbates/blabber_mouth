@@ -1,4 +1,4 @@
-module Notifier
+module BlabberMouth
   # Includes the validatable gem into your Notifier.
   # http://validatable.rubyforge.org
   module Validatable
@@ -22,7 +22,7 @@ module Notifier
         
         class << self
           
-          # Adds common validations to your Mack::Notifier class.
+          # Adds common validations to your BlabberMouth class.
           # These include:
           #   validates_presence_of :to
           #   validates_presence_of :from
@@ -72,7 +72,7 @@ module Notifier
     def deliver(handler = deliver_with)
       return false unless self.valid?
       begin
-        "Mack::Notifier::DeliveryHandlers::#{handler.to_s.camelcase}".constantize.deliver(self)
+        "BlabberMouth::DeliveryHandlers::#{handler.to_s.camelcase}".constantize.deliver(self)
       rescue Exception => e
         self.errors.add(:deliver, e.message)
         return false
@@ -85,7 +85,7 @@ module Notifier
     end
     
   end # Validatable
-end # Notifier
+end # BlabberMouth
 
 module Validatable # :nodoc:
   class ValidationBase #:nodoc:
