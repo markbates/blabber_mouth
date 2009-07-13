@@ -7,9 +7,9 @@ describe BlabberMouth::Adapters::Tmail do
     it "should handle just one part correctly" do
       delivered_notifiers.should be_empty
       we = WelcomeEmail.new
-      we.to = "test@mackframework.com"
-      we.from = "mark@mackframework.com"
-      we.reply_to = "mark@mackframework.com"
+      we.to = "test@example.com"
+      we.from = "mark@example.com"
+      we.reply_to = "mark@example.com"
       we.subject = "Hello World!"
       we.body(:plain, "This is my plain text body")
       adap = BlabberMouth::Adapters::Tmail.new(we)
@@ -28,9 +28,9 @@ describe BlabberMouth::Adapters::Tmail do
     it "should convert a BlabberMouth object to a TMail::Mail object" do
       delivered_notifiers.should be_empty
       we = WelcomeEmail.new
-      we.to = "test@mackframework.com"
-      we.from = "mark@mackframework.com"
-      we.reply_to = "mark@mackframework.com"
+      we.to = "test@example.com"
+      we.from = "mark@example.com"
+      we.reply_to = "mark@example.com"
       we.subject = "Hello World!"
       we.body(:plain, "This is my plain text body")
       we.body(:html, "This is my <b>html</b> body")
@@ -51,8 +51,8 @@ describe BlabberMouth::Adapters::Tmail do
       delivered_notifiers.should be_empty
       we = WelcomeEmail.new
       we.to = "mbates@helium.com"
-      we.from = "mark@mackframework.com"
-      we.reply_to = "mark@mackframework.com"
+      we.from = "mark@example.com"
+      we.reply_to = "mark@example.com"
       we.subject = "Hello World!"
       we.body(:plain, "This is my plain text body")
       we.body(:html, "This is my <b>html</b> body")
@@ -102,7 +102,7 @@ describe BlabberMouth::Adapters::Tmail do
     
     it "should raise an error if convert hasn't been performed before calling transformed" do
       adap = BlabberMouth::Adapters::Tmail.new(WelcomeEmail.new)
-      lambda{adap.transformed}.should raise_error(Mack::Errors::UnconvertedNotifier)
+      lambda{adap.transformed}.should raise_error(BlabberMouth::Errors::UnconvertedNotifier)
     end
     
   end

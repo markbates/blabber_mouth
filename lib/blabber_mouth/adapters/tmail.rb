@@ -7,10 +7,10 @@ module BlabberMouth
     class Tmail < BlabberMouth::Adapters::Base
       
       # Returns the underlying TMail object.
-      # Raises Mack::Errors::UnconvertedNotifier if the convert method hasn't
+      # Raises BlabberMouth::Errors::UnconvertedNotifier if the convert method hasn't
       # been called first.
       def transformed
-        raise Mack::Errors::UnconvertedNotifier.new if @tmail.nil?
+        raise BlabberMouth::Errors::UnconvertedNotifier.new if @tmail.nil?
         @tmail
       end
       

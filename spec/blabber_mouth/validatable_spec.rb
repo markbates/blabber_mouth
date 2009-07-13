@@ -21,31 +21,6 @@ describe BlabberMouth::Validatable do
     @ae = AnswerEmail.new
   end
   
-  describe "form error handler" do
-    
-    it "should add extra style to form if there's an error" do
-      @ae.should_not be_valid
-      text_field(:ae, :to, :error_class => "my_error").should match(/class=\"my_error\"/)
-    end
-    
-    it "should not add extra style to form if there's no error" do
-      @my_qe = QuestionEmail.new
-      @my_qe.subject = "hello world"
-      @my_qe.should be_valid
-      text_field(:my_qe, :subject, :error_class => "my_error").should_not match(/class=\"my_error\"/)
-    end
-    
-    describe 'errors_for' do
-      
-      it 'should return the errors for a particular field' do
-        @ae.should_not be_valid
-        @ae.errors_for(:to).should include("can't be empty")
-      end
-      
-    end
-    
-  end
-  
   describe "common_notifier_validations" do
     
     it "should validates_presence_of :to, :from, :subject" do
@@ -81,7 +56,7 @@ describe BlabberMouth::Validatable do
       he.to = "lksadjflsdjf"
       he.should_not be_valid
       he.errors.on(:to).should == "[lksadjflsdjf] is not valid"
-      he.to = "mark@mackframework.com"
+      he.to = "mark@example.com"
       he.should be_valid
     end
     
@@ -90,7 +65,7 @@ describe BlabberMouth::Validatable do
       he.to = ["lksadjflsdjf", "skjfkljsdlj"]
       he.should_not be_valid
       he.errors.on(:to).should == ["[lksadjflsdjf] is not valid", "[skjfkljsdlj] is not valid"]
-      he.to = ["MARK@mackframework.com", "testing@mackframework.com"]
+      he.to = ["MARK@example.com", "testing@example.com"]
       he.should be_valid
     end
     

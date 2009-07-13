@@ -5,7 +5,7 @@ describe BlabberMouth do
   before(:each) do
     @we = WelcomeEmail.new
     @my_file = File.join(File.dirname(__FILE__), "..", "fixtures", "mark-simpson.png")
-    FileUtils.rm_rf(Mack::Paths.notifiers)
+    FileUtils.rm_rf(configatron.blabber_mouth.paths.models)
   end
   
   describe "deliver" do
@@ -31,8 +31,8 @@ describe BlabberMouth do
   describe "build" do
     
     it "should build an email based on the provided hash" do
-      @we.build({:to => "mark@mackframework.com", :subject => "hello world", :body_plain => "this is my text body"})
-      @we.to.should == "mark@mackframework.com"
+      @we.build({:to => "mark@example.com", :subject => "hello world", :body_plain => "this is my text body"})
+      @we.to.should == "mark@example.com"
       @we.subject.should == "hello world"
       @we.body(:plain).should == "this is my text body"
     end
@@ -78,10 +78,10 @@ describe BlabberMouth do
   describe "destinations" do
     
     it "should concat all recipients into an array" do
-      @we.to = "mark@mackframework.com"
+      @we.to = "mark@example.com"
       @we.cc = ["foo@example.com", "bar@example.com"]
       @we.bcc = "fubar@example.com"
-      @we.recipients.should == ["mark@mackframework.com", "foo@example.com", "bar@example.com", "fubar@example.com"]
+      @we.recipients.should == ["mark@example.com", "foo@example.com", "bar@example.com", "fubar@example.com"]
     end
     
   end
@@ -91,9 +91,9 @@ describe BlabberMouth do
     it "should use 'from' if no reply_to is specified" do
       @we.from = "Mark Bates"
       @we.reply_to.should == @we.from
-      @we.reply_to = "mark@mackframework.com"
+      @we.reply_to = "mark@example.com"
       @we.reply_to.should_not == @we.from
-      @we.reply_to.should == "mark@mackframework.com"
+      @we.reply_to.should == "mark@example.com"
     end
     
   end
@@ -101,13 +101,13 @@ describe BlabberMouth do
   describe "body(:plain)" do
     
     it "if no text_body it should load a *.text.erb file, if available" do
-      FileUtils.mkdir_p(Mack::Paths.notifiers("templates", "welcome_email"))
-      text_file = Mack::Paths.notifiers("templates", "welcome_email", "plain.erb")
+      FileUtils.mkdir_p(BlabberMouth::Paths.notifiers("templates", "welcome_email"))
+      text_file = BlabberMouth::Paths.notifiers("templates", "welcome_email", "plain.erb")
       File.open(text_file, "w") do |f|
         f.puts "Hello <%= notifier.to %>"
       end
-      @we.to = "mark@mackframework.com"
-      @we.body(:plain).should == "Hello mark@mackframework.com\n"
+      @we.to = "mark@example.com"
+      @we.body(:plain).should == "Hello mark@example.com\n"
     end
     
   end
@@ -115,13 +115,13 @@ describe BlabberMouth do
   describe "body(:html)" do
     
     it "if no html_body it should load a *.html.erb file, if available" do
-      FileUtils.mkdir_p(Mack::Paths.notifiers("templates", "welcome_email"))
-      html_file = Mack::Paths.notifiers("templates", "welcome_email", "html.erb")
+      FileUtils.mkdir_p(BlabberMouth::Paths.notifiers("templates", "welcome_email"))
+      html_file = BlabberMouth::Paths.notifiers("templates", "welcome_email", "html.erb")
       File.open(html_file, "w") do |f|
         f.puts "Hello <b><%= notifier.to %></b>"
       end
-      @we.to = "mark@mackframework.com"
-      @we.body(:html).should == "Hello <b>mark@mackframework.com</b>\n"
+      @we.to = "mark@example.com"
+      @we.body(:html).should == "Hello <b>mark@example.com</b>\n"
     end
     
   end

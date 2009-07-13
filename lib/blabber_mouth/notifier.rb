@@ -152,9 +152,9 @@ module BlabberMouth
   
   def build_template(format)
     begin
-      vt = Mack::Rendering::ViewTemplate.new(:notifier, self.class.to_s.underscore, {:locals => {:notifier => self}, :format => format.to_s})
+      vt = BlabberMouth::Rendering::ViewTemplate.new(:notifier, self.class.to_s.underscore, {:locals => {:notifier => self}, :format => format.to_s})
       return vt._compile_and_render
-    rescue Mack::Errors::ResourceNotFound => e
+    rescue BlabberMouth::Errors::ResourceNotFound => e
     end
     return nil
   end

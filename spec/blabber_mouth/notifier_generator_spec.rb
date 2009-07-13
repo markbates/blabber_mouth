@@ -3,18 +3,18 @@ require File.join(File.dirname(__FILE__), "..", "spec_helper")
 describe NotifierGenerator do
   
   before(:each) do
-    FileUtils.rm_rf(Mack::Paths.notifiers)
-    FileUtils.rm_rf(Mack::Paths.test)
-    @notifier_file = Mack::Paths.notifiers("registration_email.rb")
-    @text_file = Mack::Paths.notifiers("templates", "registration_email", "plain.erb")
-    @html_file = Mack::Paths.notifiers("templates", "registration_email", "html.erb")
-    @spec_file = Mack::Paths.notifier_tests("registration_email_spec.rb")
-    @test_case_file = Mack::Paths.notifier_tests("registration_email_test.rb")
+    FileUtils.rm_rf(BlabberMouth::Paths.notifiers)
+    FileUtils.rm_rf(BlabberMouth::Paths.test)
+    @notifier_file = BlabberMouth::Paths.notifiers("registration_email.rb")
+    @text_file = BlabberMouth::Paths.notifiers("templates", "registration_email", "plain.erb")
+    @html_file = BlabberMouth::Paths.notifiers("templates", "registration_email", "html.erb")
+    @spec_file = BlabberMouth::Paths.notifier_tests("registration_email_spec.rb")
+    @test_case_file = BlabberMouth::Paths.notifier_tests("registration_email_test.rb")
   end
   
   after(:each) do
-    FileUtils.rm_rf(Mack::Paths.notifiers)
-    FileUtils.rm_rf(Mack::Paths.test)
+    FileUtils.rm_rf(BlabberMouth::Paths.notifiers)
+    FileUtils.rm_rf(BlabberMouth::Paths.test)
   end
   
   it "should require a name" do

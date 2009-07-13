@@ -19,8 +19,8 @@ describe BlabberMouth::Attachment do
   
   describe "add_uploaded_file" do
     
-    it "should take a Mack::Request::UploadedFile object and set the body and the file_name correctly" do
-      uploaded_file = Mack::Request::UploadedFile.new({:filename => "mark-simpson.png", :tempfile => File.open(@my_file)})
+    it "should take a BlabberMouth::Request::UploadedFile object and set the body and the file_name correctly" do
+      uploaded_file = BlabberMouth::Request::UploadedFile.new({:filename => "mark-simpson.png", :tempfile => File.open(@my_file)})
       at = BlabberMouth::Attachment.new
       at.add_uploaded_file(uploaded_file)
       at.body.should == File.read(@my_file)
@@ -52,8 +52,8 @@ describe BlabberMouth::Attachment do
       at.body.should == File.read(@my_file)
     end
     
-    it "should take a Mack::Request::UploadedFile object and call add_uploaded_file" do
-      uploaded_file = Mack::Request::UploadedFile.new({:filename => "mark-simpson.png", :tempfile => File.open(@my_file)})
+    it "should take a BlabberMouth::Request::UploadedFile object and call add_uploaded_file" do
+      uploaded_file = BlabberMouth::Request::UploadedFile.new({:filename => "mark-simpson.png", :tempfile => File.open(@my_file)})
       at = BlabberMouth::Attachment.new(uploaded_file)
       at.body.should == File.read(@my_file)
       at.file_name.should == "mark-simpson.png"

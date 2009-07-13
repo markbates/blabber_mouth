@@ -4,6 +4,7 @@ require 'validatable'
 require 'tmail'
 require 'xmpp4r'
 require 'xmpp4r-simple'
+require 'activesupport'
 
 fl = File.join(File.dirname(__FILE__), "blabber_mouth")
 

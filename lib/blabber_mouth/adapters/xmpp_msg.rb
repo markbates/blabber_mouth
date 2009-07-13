@@ -21,7 +21,7 @@ module BlabberMouth
       
       # The transformed (ie, converted, object)
       def transformed
-        raise Mack::Errors::UnconvertedNotifier.new if @xmpp_msg.nil?
+        raise BlabberMouth::Errors::UnconvertedNotifier.new if @xmpp_msg.nil?
         return @xmpp_container
       end
       

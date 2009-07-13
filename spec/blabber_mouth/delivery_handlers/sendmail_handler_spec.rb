@@ -6,8 +6,8 @@ describe BlabberMouth::DeliveryHandlers::Sendmail do
     
     it "should send the mail" do
       we = WelcomeEmail.new
-      we.to = "totesting@mackframework.com"
-      we.from = "fromtesting@mackframework.com"
+      we.to = "totesting@example.com"
+      we.from = "fromtesting@example.com"
       we.subject = "smtp handler test"
       we.body(:plain, "my plain text body")
       we.body(:html, "my <b>html</b> body")

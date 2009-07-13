@@ -60,7 +60,7 @@ describe BlabberMouth::DeliveryHandlers::XmppTransport do
       adap.convert
       lambda {
         BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
-      }.should raise_error(Mack::Errors::XmppError)
+      }.should raise_error(BlabberMouth::Errors::XmppError)
     end
     
     it "should raise offline error" do
@@ -70,7 +70,7 @@ describe BlabberMouth::DeliveryHandlers::XmppTransport do
       adap.convert
       begin
         BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
-      rescue Mack::Errors::XmppError => ex
+      rescue BlabberMouth::Errors::XmppError => ex
         ex.get_error(:offline).should_not be_empty
       end
     end

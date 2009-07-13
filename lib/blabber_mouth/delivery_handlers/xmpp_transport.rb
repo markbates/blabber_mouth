@@ -33,7 +33,7 @@ module BlabberMouth
       end
       
       def self.deliver(xmpp_msg)
-        @ex ||= Mack::Errors::XmppError.new("xmpp error")
+        @ex ||= BlabberMouth::Errors::XmppError.new("xmpp error")
         xmpp_settings = configatron.blabber_mouth.xmpp
         jid_str = xmpp_settings.jid
         jid_str += ("/" + xmpp_settings.jid_resource) if !jid_str.index("/")
@@ -51,7 +51,7 @@ module BlabberMouth
               if !offline_buddies.empty?
                 # there are offline buddies, log the errors
                 offline_buddies.each do |buddy|
-                  err = Mack::Errors::XmppUserNotOnline.new(buddy)
+                  err = BlabberMouth::Errors::XmppUserNotOnline.new(buddy)
                   @ex.add_error(:offline, err)
                 end
               end
