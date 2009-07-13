@@ -13,10 +13,7 @@ module BlabberMouth
         end
       end
       
-    end # SendMail
-    
-    # Alias of SendMail to Sendmail
-    SendMail = Sendmail # :nodoc:
+    end # Sendmail
     
   end # DeliveryHandlers
 end # BlabberMouth

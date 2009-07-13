@@ -1,7 +1,11 @@
 if defined?(RAILS_ENV)
-  configatron.blabber_mouth.env = RAILS_ENV
+  configatron.blabber_mouth.set_default(:env, RAILS_ENV)
+  configatron.blabber_mouth.paths.set_default(:models, File.join(RAILS_ROOT, 'app', 'notifiers'))
+  configatron.blabber_mouth.paths.set_default(:templates, File.join(RAILS_ROOT, 'app', 'views', 'notifiers'))
 else
-  configatron.blabber_mouth.env = 'development'
+  configatron.blabber_mouth.set_default(:env, 'development')
+  configatron.blabber_mouth.paths.set_default(:models, File.join(FileUtils.pwd, 'app', 'notifiers'))
+  configatron.blabber_mouth.paths.set_default(:templates, File.join(FileUtils.pwd, 'app', 'views', 'notifiers'))
 end
 
 configatron.blabber_mouth.sendmail.set_default(:location, '/usr/sbin/sendmail')

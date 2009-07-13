@@ -10,15 +10,6 @@ module BlabberMouth
       end
       
       base.class_eval do
-
-        # Alias the Validatable methods to look like DataMapper methods,
-        # if that's the kind of thing you're used to. :)          
-        alias_class_method :validates_acceptance_of, :validates_is_accepted
-        alias_class_method :validates_confirmation_of, :validates_is_confirmed
-        alias_class_method :validates_format_of, :validates_format
-        alias_class_method :validates_length_of, :validates_length
-        alias_class_method :validates_numericality_of, :validates_is_number
-        alias_class_method :validates_presence_of, :validates_present
         
         class << self
           

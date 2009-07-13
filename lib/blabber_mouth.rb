@@ -13,7 +13,7 @@ require File.join(fl, "errors")
 require File.join(fl, "attachment")
 require File.join(fl, "notifier_generator", "notifier_generator")
 
-[:delivery_handlers, :adapters, :rendering].each do |dir|
+[:utils, :delivery_handlers, :adapters, :rendering].each do |dir|
   Dir.glob(File.join(fl, dir.to_s, "**/*.rb")).each do |h|
     require h
   end

@@ -1,5 +1,9 @@
 require 'rubygems'
 require 'spec'
+require 'configatron'
+
+configatron.blabber_mouth.env = 'test'
+configatron.blabber_mouth.paths.models = File.join(File.dirname(__FILE__), 'fake_application', 'notifiers')
 
 require File.join(File.dirname(__FILE__), '..', 'lib', 'blabber_mouth')
 

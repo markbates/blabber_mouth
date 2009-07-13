@@ -22,7 +22,6 @@ describe BlabberMouth::Validatable do
   end
   
   describe "form error handler" do
-    include Mack::ViewHelpers
     
     it "should add extra style to form if there's an error" do
       @ae.should_not be_valid

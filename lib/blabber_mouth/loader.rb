@@ -1,9 +1,8 @@
 # If the notifiers directory does not exist, create it.
-FileUtils.mkdir_p(Mack::Paths.notifiers)
+path = configatron.blabber_mouth.paths.models
+FileUtils.mkdir_p(path)
 
 # Require all notifiers
-Mack.search_path(:app).each do |path|
-  Dir.glob(File.join(path, 'notifiers', "**/*.rb")).each do |notifier|
-    require File.expand_path(notifier)
-  end
+Dir.glob(File.join(path, "**/*.rb")).each do |notifier|
+  require File.expand_path(notifier)
 end

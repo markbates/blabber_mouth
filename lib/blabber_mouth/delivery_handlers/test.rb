@@ -7,7 +7,7 @@ module BlabberMouth
         NotifierRegistry.add(notifier)
       end
       
-      class NotifierRegistry < Mack::Utils::RegistryList # :nodoc:
+      class NotifierRegistry < BlabberMouth::Utils::RegistryList # :nodoc:
       end
       
     end # Test

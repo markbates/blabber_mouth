@@ -11,11 +11,19 @@ module BlabberMouth
       end
       
       # The transformed (ie, converted, object)
-      needs_method :transformed
+      def transformed(*args)
+        raise NoMethodError.new('transformed')
+      end
+      
       # Convert the BlabberMouth object to the adapted object.
-      needs_method :convert
+      def convert(*args)
+        raise NoMethodError.new('convert')
+      end
+      
       # The RAW encoded String ready for delivery via SMTP, Sendmail, etc...
-      needs_method :deliverable
+      def deliverable(*args)
+        raise NoMethodError.new('deliverable')
+      end
       
     end # Base
   end # Adapters
