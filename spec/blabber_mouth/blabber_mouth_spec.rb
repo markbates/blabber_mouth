@@ -105,7 +105,7 @@ describe BlabberMouth do
       FileUtils.mkdir_p(@welcome_email_template_path)
       text_file = File.join(@welcome_email_template_path, 'plain.erb')
       File.open(text_file, "w") do |f|
-        f.puts "Hello <%= notifier.to_s %>"
+        f.puts "Hello <%= notifier.to %>"
       end
       @we.to = "mark@example.com"
       @we.body(:plain).should == "Hello mark@example.com\n"
@@ -119,7 +119,7 @@ describe BlabberMouth do
       FileUtils.mkdir_p(@welcome_email_template_path)
       html_file = File.join(@welcome_email_template_path, "html.erb")
       File.open(html_file, "w") do |f|
-        f.puts "Hello <b><%= notifier.to_s %></b>"
+        f.puts "Hello <b><%= notifier.to %></b>"
       end
       @we.to = "mark@example.com"
       @we.body(:html).should == "Hello <b>mark@example.com</b>\n"

@@ -151,12 +151,31 @@ module BlabberMouth
   end
   
   def build_template(format)
+    path = File.join(configatron.blabber_mouth.paths.templates, self.class.to_s.underscore, "#{format}.erb")
+    if File.exists?(path)
+      template = ERB.new(File.read(path))
+      return template.result(Template.new(self).binder)
+    end
     # begin
     #   vt = BlabberMouth::Rendering::ViewTemplate.new(:notifier, self.class.to_s.underscore, {:locals => {:notifier => self}, :format => format.to_s})
     #   return vt._compile_and_render
     # rescue BlabberMouth::Errors::ResourceNotFound => e
     # end
     return nil
+  end
+  
+  class Template
+
+    attr_accessor :notifier
+
+    def initialize(notifier)
+      self.notifier = notifier
+    end
+    
+    def binder
+      binding
+    end
+    
   end
   
 end # BlabberMouth
