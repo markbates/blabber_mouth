@@ -17,18 +17,6 @@ describe BlabberMouth::Attachment do
     
   end
   
-  describe "add_uploaded_file" do
-    
-    it "should take a BlabberMouth::Request::UploadedFile object and set the body and the file_name correctly" do
-      uploaded_file = BlabberMouth::Request::UploadedFile.new({:filename => "mark-simpson.png", :tempfile => File.open(@my_file)})
-      at = BlabberMouth::Attachment.new
-      at.add_uploaded_file(uploaded_file)
-      at.body.should == File.read(@my_file)
-      at.file_name.should == "mark-simpson.png"
-    end
-    
-  end
-  
   describe "add_io" do
     
     it "should read in the IO object" do
@@ -50,13 +38,6 @@ describe BlabberMouth::Attachment do
     it "should take an IO and call add_io" do
       at = BlabberMouth::Attachment.new(File.open(@my_file))
       at.body.should == File.read(@my_file)
-    end
-    
-    it "should take a BlabberMouth::Request::UploadedFile object and call add_uploaded_file" do
-      uploaded_file = BlabberMouth::Request::UploadedFile.new({:filename => "mark-simpson.png", :tempfile => File.open(@my_file)})
-      at = BlabberMouth::Attachment.new(uploaded_file)
-      at.body.should == File.read(@my_file)
-      at.file_name.should == "mark-simpson.png"
     end
     
   end

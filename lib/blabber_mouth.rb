@@ -19,7 +19,7 @@ require File.join(fl, "notifier_generator", "notifier_generator")
   end
 end
 
-require File.join(fl, "notifier")
+require File.join(fl, "blabber_mouth")
 
 require File.join(fl, "validations")
 

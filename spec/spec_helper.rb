@@ -37,3 +37,16 @@ end
 def fixture(name)
   File.read(File.join(File.dirname(__FILE__), "fixtures", "#{name}.fixture"))
 end
+
+# Returns true/false if the current version of Ruby equals the specified version
+def ruby?(v)
+  RUBY_VERSION == v
+end
+
+def v1_8?
+  RUBY_VERSION >= '1.8.0' && RUBY_VERSION < '1.9.0'
+end
+
+def v1_9?
+  RUBY_VERSION >= '1.9.0' && RUBY_VERSION < '2.0.0'
+end
