@@ -6,6 +6,7 @@ describe BlabberMouth do
     @we = WelcomeEmail.new
     @my_file = File.join(File.dirname(__FILE__), "..", "fixtures", "mark-simpson.png")
     FileUtils.rm_rf(configatron.blabber_mouth.paths.models)
+    @welcome_email_template_path = File.join(configatron.blabber_mouth.paths.templates, 'welcome_email')
   end
   
   describe "deliver" do
@@ -101,10 +102,10 @@ describe BlabberMouth do
   describe "body(:plain)" do
     
     it "if no text_body it should load a *.text.erb file, if available" do
-      FileUtils.mkdir_p(BlabberMouth::Paths.notifiers("templates", "welcome_email"))
-      text_file = BlabberMouth::Paths.notifiers("templates", "welcome_email", "plain.erb")
+      FileUtils.mkdir_p(@welcome_email_template_path)
+      text_file = File.join(@welcome_email_template_path, 'plain.erb')
       File.open(text_file, "w") do |f|
-        f.puts "Hello <%= notifier.to %>"
+        f.puts "Hello <%= notifier.to_s %>"
       end
       @we.to = "mark@example.com"
       @we.body(:plain).should == "Hello mark@example.com\n"
@@ -115,10 +116,10 @@ describe BlabberMouth do
   describe "body(:html)" do
     
     it "if no html_body it should load a *.html.erb file, if available" do
-      FileUtils.mkdir_p(BlabberMouth::Paths.notifiers("templates", "welcome_email"))
-      html_file = BlabberMouth::Paths.notifiers("templates", "welcome_email", "html.erb")
+      FileUtils.mkdir_p(@welcome_email_template_path)
+      html_file = File.join(@welcome_email_template_path, "html.erb")
       File.open(html_file, "w") do |f|
-        f.puts "Hello <b><%= notifier.to %></b>"
+        f.puts "Hello <b><%= notifier.to_s %></b>"
       end
       @we.to = "mark@example.com"
       @we.body(:html).should == "Hello <b>mark@example.com</b>\n"

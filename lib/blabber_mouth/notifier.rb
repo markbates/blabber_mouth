@@ -151,11 +151,11 @@ module BlabberMouth
   end
   
   def build_template(format)
-    begin
-      vt = BlabberMouth::Rendering::ViewTemplate.new(:notifier, self.class.to_s.underscore, {:locals => {:notifier => self}, :format => format.to_s})
-      return vt._compile_and_render
-    rescue BlabberMouth::Errors::ResourceNotFound => e
-    end
+    # begin
+    #   vt = BlabberMouth::Rendering::ViewTemplate.new(:notifier, self.class.to_s.underscore, {:locals => {:notifier => self}, :format => format.to_s})
+    #   return vt._compile_and_render
+    # rescue BlabberMouth::Errors::ResourceNotFound => e
+    # end
     return nil
   end
   

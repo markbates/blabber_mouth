@@ -8,7 +8,6 @@ require 'activesupport'
 
 fl = File.join(File.dirname(__FILE__), "blabber_mouth")
 
-require File.join(fl, "paths")
 require File.join(fl, "settings")
 require File.join(fl, "errors")
 require File.join(fl, "attachment")
