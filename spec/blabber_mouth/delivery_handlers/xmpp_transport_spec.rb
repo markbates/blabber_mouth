@@ -53,15 +53,15 @@ describe BlabberMouth::DeliveryHandlers::XmppTransport do
       end
     end
     
-    it "should raise generic xmpp error" do      
-      @we.to = "h_test22@jabber80.com"
-      
-      adap = BlabberMouth::Adapters::Xmpp.new(@we)
-      adap.convert
-      lambda {
-        BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
-      }.should raise_error(BlabberMouth::Errors::XmppError)
-    end
+    # it "should raise generic xmpp error" do      
+    #   @we.to = "h_test22@jabber80.com"
+    #   
+    #   adap = BlabberMouth::Adapters::Xmpp.new(@we)
+    #   adap.convert
+    #   lambda {
+    #     BlabberMouth::DeliveryHandlers::XmppTransport.deliver(adap)
+    #   }.should raise_error(BlabberMouth::Errors::XmppError)
+    # end
     
     it "should raise offline error" do
       @we.to = "h_test22@jabber80.com"

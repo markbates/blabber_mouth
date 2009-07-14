@@ -28,7 +28,7 @@ module BlabberMouth
       # Convert the BlabberMouth object to the adapted object.
       def convert
         settings = configatron.blabber_mouth.xmpp_settings
-        arr = [mack_notifier.to].flatten
+        arr = [bm_notifier.to].flatten
         @xmpp_container = XmppMsgContainer.new
         @xmpp_container.recipients = arr
         
@@ -36,11 +36,11 @@ module BlabberMouth
           xmpp_msg = Message::new
           xmpp_msg.set_type(:normal)
           xmpp_msg.set_to(rcpt)
-          xmpp_msg.set_from(mack_notifier.from)
-          xmpp_msg.set_subject(mack_notifier.subject)
+          xmpp_msg.set_from(bm_notifier.from)
+          xmpp_msg.set_subject(bm_notifier.subject)
           xmpp_msg.set_type(settings.message_type)
-          unless mack_notifier.body(:plain).blank?
-            xmpp_msg.set_body(mack_notifier.body(:plain))
+          unless bm_notifier.body(:plain).blank?
+            xmpp_msg.set_body(bm_notifier.body(:plain))
           end
 
           @xmpp_container.messages << xmpp_msg

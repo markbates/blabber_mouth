@@ -22,7 +22,7 @@ require 'spec/rake/spectask'
   s.require_paths = ['lib']
   s.extra_rdoc_files = ['README', 'LICENSE']
   s.has_rdoc = true
-  s.rubyforge_project = "blabber_mouth"
+  s.rubyforge_project = "magrathea"
   s.add_dependency("tmail", ">=1.2.3.1")
   s.add_dependency("validatable", ">=1.6.7")
   s.add_dependency("xmpp4r", "0.4")

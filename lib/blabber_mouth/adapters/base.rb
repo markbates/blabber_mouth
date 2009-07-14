@@ -4,10 +4,10 @@ module BlabberMouth
     class Base
       
       # The origina BlabberMouth object passed in.
-      attr_accessor :mack_notifier
+      attr_accessor :bm_notifier
       
       def initialize(mail) # :nodoc:
-        self.mack_notifier = mail
+        self.bm_notifier = mail
       end
       
       # The transformed (ie, converted, object)
