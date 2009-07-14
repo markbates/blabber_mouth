@@ -27,8 +27,3 @@ Currently implemented delivery handlers are: SMTP (default), sendmail, and test.
 
 When testing you can get access to delivered emails with the delivered_notifiers
 method. After each tests these emails will be flushed our of the test handler.
-
-== Rake tasks
-  
-  # Generates a notifier model, a test, and text and html template files.
-  rake generate:notifier
